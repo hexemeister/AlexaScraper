@@ -33,9 +33,11 @@ public class Principal {
 			String[] array = new String[listaDeLinks.size()]; // Array pra exportar pra csv
 			array = listaDeLinks.toArray(array); // transforma list para array
 			StringBuilder sb = new StringBuilder(); // stringbuilder é mais rapido
+			int i = 0;
 			for (String element : array) { // contruindo o csv
 				sb.append(element);
 				sb.append(",");
+				System.out.println(++i + " " + element);
 			}
 			
 			// grava e fecha o arquivo
