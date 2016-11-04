@@ -36,7 +36,7 @@ public class Principal {
 			int i = 0;
 			for (String element : array) { // contruindo o csv
 				sb.append(element);
-				sb.append(",");
+				sb.append(",\n");
 				System.out.println(++i + " " + element);
 			}
 			
