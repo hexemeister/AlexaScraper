@@ -1,6 +1,8 @@
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.jsoup.Connection;
@@ -44,8 +46,7 @@ public class ACheckerScrapper {
 
 	public static void main(String[] args) {
 
-		final String listaDeLinks = "Google.com.br,Google.com,Youtube.com,Facebook.com,Globo.com,Uol.com.br,"
-				+ "Live.com,Mercadolivre.com.br,Blogspot.com.br,Yahoo.com,Blastingnews.com,Wikipedia.org,Whatsapp.com,"
+		final String listaDeLinks = "Mercadolivre.com.br,Blogspot.com.br,Yahoo.com,Blastingnews.com,Wikipedia.org,Whatsapp.com,"
 				+ "Instagram.com,Twitter.com,Olx.com.br,Linkedin.com,Msn.com,Abril.com.br,Blogger.com,Curapelanatureza.com.br,"
 				+ "Wordpress.com,Netflix.com,Americanas.com.br,Popads.net,Caixa.gov.br,Xvideos.com,Folha.uol.com.br,Onclickads.net,"
 				+ "Aliexpress.com,Techtudo.com.br,Fatosdesconhecidos.com.br,Correios.com.br,Stackoverflow.com,Microsoft.com,"
@@ -107,9 +108,10 @@ public class ACheckerScrapper {
 				+ "Hp.com,Roblox.com,Steamcommunity.com,Mobly.com.br,Livrariacultura.com.br,Ashleymadison.com,Duolingo.com,Spotscenered.info,"
 				+ "Posthaus.com.br,Ozock.com,Linkshrink.net,Clickpb.com.br,Naointendo.com.br,Youporn.com".toLowerCase();
 		
-		int posicao = 1;
 //		final String link = "Correios.com.br";
 		String[] arrayDeLinks = listaDeLinks.split(",");
+		
+		int posicao = 500 - arrayDeLinks.length + 1;
 		
 		for (String link : arrayDeLinks) {
 			
@@ -127,7 +129,7 @@ public class ACheckerScrapper {
 			String qtOcorrenciasAA = QtOcorrenciasLvlAA(document).toString();
 			String qtOcorrenciasAAA = QtOcorrenciasLvlAAA(document).toString();
 			
-			String totalDeErrosPotenciais = new Integer(qtLikelyErrors + qtPotentialErrors).toString();
+			String totalDeErrosPotenciais = new Integer(Integer.parseInt(qtLikelyErrors) + Integer.parseInt(qtPotentialErrors)).toString();
 			
 			// Controle pelo Console
 			
@@ -144,19 +146,27 @@ public class ACheckerScrapper {
 			System.out.println("Qtd ocorrencias nivel A: " + qtOcorrenciasA );
 			System.out.println("Qtd ocorrencias nivel AA: " + qtOcorrenciasAA);
 			System.out.println("Qtd ocorrencias nivel AAA: " + qtOcorrenciasAAA);
-			String titulo = "Classificação, Site, A, AA,AAA, OcorrenciasA, OcorrenciasAA, OcorrenciasAAA, Potencial";
+			String titulo = "Classificacao, Site, A, AA,AAA, OcorrenciasA, OcorrenciasAA, OcorrenciasAAA, Potencial\n";
 			
 			
-			StringBuffer sb = new StringBuffer(titulo);
+			 StringBuffer sb = new StringBuffer();
+			if (posicao == 1) {
+				sb.append(titulo);
+				System.out.println(titulo + "\n");
+			}
 			sb.append(Integer.toString(posicao)).append(",").append(linkValidado).append(",").append(qtErrosA).append(",")
 			.append(qtErrosAA).append(",").append(qtErrosAAA).append(",").append(qtOcorrenciasA).append(",").append(qtOcorrenciasAA)
 			.append(",").append(qtOcorrenciasAAA).append(",").append(totalDeErrosPotenciais).append("\n");
 			
-			System.out.println(titulo);
 			System.out.println(sb.toString());
 			// grava e fecha o arquivo
 			FileWriter file;
 			try {
+				String filename = link.split("\\.")[0];
+				SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyykkmmss");
+				file = new FileWriter("html/"+ filename + sdf.format(new Date()) + ".html", false);
+				file.write(document.toString());
+				file.close();
 				file = new FileWriter("resultado/resultado.csv", true);
 				file.write(sb.toString());
 				file.close();
@@ -218,7 +228,7 @@ public class ACheckerScrapper {
 					.data("rpt_format", "1")
 					.cookies(loginForm.cookies())
 					.post();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			validaLinkWCGA2(link);
 		}
@@ -256,6 +266,7 @@ public class ACheckerScrapper {
 		List<Element> todos = new ArrayList<>();
 		Element node = divsAAA.first();
 		for (Element element : divsAAA) {
+			node = element;
 			while (node != null && node.tagName().equalsIgnoreCase("div")
 					&& node.className().equalsIgnoreCase("gd_one_check")) {
 				todos.add(node);
@@ -271,6 +282,7 @@ public class ACheckerScrapper {
 		List<Element> todos = new ArrayList<>();
 		Element node = divsAAA.first();
 		for (Element element : divsAAA) {
+			node = element;
 			while (node != null && node.tagName().equalsIgnoreCase("div")
 					&& node.className().equalsIgnoreCase("gd_one_check")) {
 				todos.add(node);
@@ -286,6 +298,7 @@ public class ACheckerScrapper {
 		List<Element> todos = new ArrayList<>();
 		Element node = divsAAA.first();
 		for (Element element : divsAAA) {
+			node = element;
 			while (node != null && node.tagName().equalsIgnoreCase("div")
 					&& node.className().equalsIgnoreCase("gd_one_check")) {
 				todos.add(node);

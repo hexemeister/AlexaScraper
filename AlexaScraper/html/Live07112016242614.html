@@ -1,0 +1,625 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="eng" lang="eng">
+ <head> 
+  <title>IDI Web Accessibility Checker : Web Accessibility Checker</title> 
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+  <meta name="Generator" content="AChecker - Copyright 2009 by ATRC http://atrc.utoronto.ca/"> 
+  <meta name="keywords" content="achecker,free, open source, accessibility checker, accessibility reviewer, accessibility evaluator, accessibility evaluation, WCAG evaluation, 508 evaluation, BITV evaluation, evaluate accessibility, test accessibility, review accessibility, ATRC, WCAG 2, STANCA, BITV, Section 508."> 
+  <meta name="description" content="AChecker is a Web accessibility evalution tool designed to help Web content developers and Web application developers ensure their Web content is accessible to everyone regardless to the technology they may be using, or their abilities or disabilities."> 
+  <base href="http://achecker.ca/"> 
+  <link rel="shortcut icon" href="http://achecker.ca/images/favicon.ico" type="image/x-icon"> 
+  <link rel="stylesheet" href="http://achecker.ca/themes/default/forms.css" type="text/css"> 
+  <link rel="stylesheet" href="http://achecker.ca/themes/default/styles.css" type="text/css"> 
+  <!--[if IE]>
+	  <link rel="stylesheet" href="http://achecker.ca/themes/default/ie_styles.css" type="text/css" />
+	<![endif]--> 
+  <script src="http://achecker.ca/jscripts/lib/jquery.js" type="text/javascript"></script> 
+  <script src="http://achecker.ca/jscripts/lib/jquery-URLEncode.js" type="text/javascript"></script> 
+  <script src="http://achecker.ca/jscripts/AChecker.js" type="text/javascript"></script> 
+  <script language="javascript" type="text/javascript">
+	//<!--
+
+var AChecker = AChecker || {};
+AChecker.lang = AChecker.lang || {};
+
+(function () {
+
+    // Define langauge translations that are used in checker.js
+    // @ see checker/js/checker.js
+    AChecker.lang.provide_uri = "Please provide a uri!";
+    AChecker.lang.provide_html_file = "Please provide a html file!";
+    AChecker.lang.provide_upload_file = "Please upload html (or htm) file only!";
+    AChecker.lang.provide_html_input = "Please provide a html input!";
+    AChecker.lang.wait = "Please wait ...";
+    AChecker.lang.get_file = "Get File";
+    AChecker.lang.error_occur = "An error occured:";
+    AChecker.lang.pass_decision = "Pass Decision Made";
+    AChecker.lang.warning = "Warning: Confirmation Required";
+    AChecker.lang.manual_check = "Manual Check Required";
+    AChecker.lang.get_seal = '&nbsp;&nbsp;<span style="color:#E41B17;;border:thin solid #E41B17;"><a href="checker/index.php#seals_div">Conformance seal now issued.</a></span>';
+    AChecker.lang.congrats_likely = '<img src="http://achecker.ca/images/feedback.gif" alt="Feedback" />  Congratulations! No likely problems.';
+    AChecker.lang.congrats_potential = '<img src="http://achecker.ca/images/feedback.gif" alt="Feedback" />  Congratulations! No potential problems.';
+
+})();
+	//-->
+	</script> 
+  <script src="http://achecker.ca/checker/js/checker.js" type="text/javascript"></script> 
+ </head> 
+ <body onload="AChecker.input.initialize('AC_by_uri', 'by_guideline');"> 
+  <a href="checker/index.php#output_div"><img src="images/clr.gif" height="1" width="1" alt="[ jump_to_report ]" border="0"></a> 
+  <div id="liquid-round">
+   <div class="top">
+    <span></span>
+   </div> 
+   <div class="center-content" id="center-content"> 
+    <div id="logo"> 
+     <a href="http://www.atutor.ca/achecker/"><img src="http://achecker.ca/themes/default/images/checker_logo.png" alt="AChecker" style="border:none;"></a> 
+    </div> 
+    <div id="banner"> 
+     <span id="logininfo"> <a href="http://achecker.ca/login.php">Login</a> &nbsp;&nbsp; <a href="http://achecker.ca/register.php">Register</a> </span> 
+    </div> 
+    <div class="topnavlistcontainer"> 
+     <!-- the main navigation. in our case, tabs --> 
+     <ul class="navigation"> 
+      <li class="navigation"><a href="/checker/index.php" title="Web Accessibility Checker" class="active"><span class="nav">Web Accessibility Checker</span></a></li> 
+     </ul> 
+    </div> 
+    <!-- the sub navigation and guide --> 
+    <div id="sub-menu"> 
+     <!-- guide --> 
+     <div> 
+      <a href="/documentation/index.php?p=checker/index.php" onclick="AChecker.popup('/documentation/index.php?p=checker/index.php'); return false;" id="guide" target="_new" title="AChecker Handbook: Web Accessibility Checker"><em>Web Accessibility Checker</em></a> 
+     </div> 
+     <!-- the sub navigation --> 
+     <div id="sub-navigation">
+       &nbsp; 
+     </div> 
+    </div> 
+    <a name="content" title="Start Content"></a> 
+    <table style="width:100%"> 
+     <tbody>
+      <tr> 
+       <td> 
+        <div class="center-input-form"> 
+         <form name="input_form" enctype="multipart/form-data" method="post" action="/checker/index.php"> 
+          <div class="left-col" style="float:left;clear:left;">
+           <br> 
+           <fieldset class="group_form">
+            <legend class="group_form">Check Accessibility By:</legend> 
+            <div class="topnavlistcontainer">
+             <br> 
+             <ul class="navigation"> 
+              <li class="navigation"><a href="javascript:void(0)" accesskey="a" title="Web Page URL Alt+1" id="AC_menu_by_uri" onclick="return AChecker.input.onClickTab('AC_by_uri');" class="active"><span class="nav">Web Page URL</span></a></li> 
+              <li class="navigation"><a href="javascript:void(0)" accesskey="b" title="HTML File Upload Alt+2" id="AC_menu_by_upload" onclick="return AChecker.input.onClickTab('AC_by_upload');"><span class="nav">HTML File Upload</span></a></li> 
+              <li class="navigation"><a href="javascript:void(0)" accesskey="c" title="Paste HTML Markup Alt+3" id="AC_menu_by_paste" onclick="return AChecker.input.onClickTab('AC_by_paste');"><span class="nav">Paste HTML Markup</span></a></li> 
+             </ul> 
+            </div> 
+            <div id="AC_by_uri" class="input_tab" style="display:block"> 
+             <div style="text-align:center;"> 
+              <label for="checkuri">Address:</label> 
+              <input type="text" name="uri" id="checkuri" value="http://Live.com" size="50"> 
+              <div class="validation_submit_div"> 
+               <div class="spinner_div"> 
+                <img class="spinner_img" id="AC_spinner_by_uri" style="display:none" src="http://achecker.ca/themes/default/images/spinner.gif" alt="Accessibility Validation in Progress"> &nbsp; 
+               </div> 
+               <input class="validation_button" type="submit" name="validate_uri" id="validate_uri" size="100" value="Check It" onclick="return AChecker.input.validateURI();"> 
+              </div> 
+             </div> 
+            </div> 
+            <div id="AC_by_upload" class="input_tab" style="display:none"> 
+             <div style="text-align:center;"> 
+              <label for="checkfile">File:</label> 
+              <input type="hidden" name="MAX_FILE_SIZE" value="52428800"> 
+              <input type="file" id="checkfile" name="uploadfile" size="47"> 
+              <div class="validation_submit_div"> 
+               <div class="spinner_div"> 
+                <img class="spinner_img" id="AC_spinner_by_upload" style="display:none" src="http://achecker.ca/themes/default/images/spinner.gif" alt="Accessibility Validation in Progress"> &nbsp; 
+               </div> 
+               <input class="validation_button" type="submit" name="validate_file" id="validate_file" value="Check It" onclick="return AChecker.input.validateUpload();"> 
+              </div> 
+             </div> 
+            </div> 
+            <div id="AC_by_paste" class="input_tab" style="display:none"> 
+             <label for="checkpaste">Paste from clipboard complete HTML source:</label> 
+             <div style="text-align:center;"> 
+              <textarea rows="20" cols="75" name="pastehtml" id="checkpaste"></textarea> 
+              <div class="validation_submit_div"> 
+               <div class="spinner_div"> 
+                <img class="spinner_img" id="AC_spinner_by_paste" style="display:none" src="http://achecker.ca/themes/default/images/spinner.gif" alt="Accessibility Validation in Progress"> &nbsp; 
+               </div> 
+               <input class="validation_button" type="submit" name="validate_paste" id="validate_paste" value="Check It" onclick="return AChecker.input.validatePaste();"> 
+              </div> 
+             </div> 
+            </div> 
+            <div> 
+             <h2 align="left"> <img src="images/arrow-closed.png" alt="Expand Guidelines" title="Expand Guidelines" id="toggle_image" border="0"> <a href="javascript:AChecker.toggleDiv('div_options', 'toggle_image');">Options</a> </h2> 
+            </div> 
+            <div id="div_options" style="display:none"> 
+             <table class="data static" style="background-colour:#eeeeee;"> 
+              <tbody>
+               <tr> 
+                <td class="one_third_width"> <input type="checkbox" name="enable_html_validation" id="enable_html_validation" value="1"> <label for="enable_html_validation">Enable HTML Validator</label> </td> 
+                <td class="one_third_width"> <input type="checkbox" name="enable_css_validation" id="enable_css_validation" value="1"> <label for="enable_css_validation">Enable CSS Validator</label> </td> 
+                <td class="one_third_width"> <input type="checkbox" name="show_source" id="show_source" value="1"> <label for="show_source">Show Source</label> </td> 
+               </tr> 
+               <tr> 
+                <td colspan="3"><h3>Guidelines to Check Against</h3></td> 
+               </tr> 
+               <!-- 
+			<tr>
+				<td>
+					<input type="checkbox" name="gid[]" id='gid_1' value='1'  />
+					<label for='gid_1'>BITV 1.0 (Level 2)</label>
+				</td>
+				<td>
+					<input type="checkbox" name="gid[]" id='gid_2' value='2'  />
+					<label for='gid_2'>Section 508</label>
+				</td>
+				<td>
+					<input type="checkbox" name="gid[]" id='gid_3' value='3'  />
+					<label for='gid_3'>Stanca Act</label>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" name="gid[]" id='gid_4' value='4'  />
+					<label for='gid_4'>WCAG 1.0 (Level A)</label>
+				</td>
+				<td>
+					<input type="checkbox" name="gid[]" id='gid_5' value='5'  />
+					<label for='gid_5'>WCAG 1.0 (Level AA)</label>
+				</td>
+				<td>
+					<input type="checkbox" name="gid[]" id='gid_6' value='6'  />
+					<label for='gid_6'>WCAG 1.0 (Level AAA)</label>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" name="gid[]" id='gid_7' value='7'  />
+					<label for='gid_7'>WCAG 2.0 (Level A)</label>
+				</td>
+				<td>
+					<input type="checkbox" name="gid[]" id='gid_8' value='8'  />
+					<label for='gid_8'>WCAG 2.0 (Level AA)</label>
+				</td>
+				<td>
+					<input type="checkbox" name="gid[]" id='gid_9' value='9'  />
+					<label for='gid_9'>WCAG 2.0 (Level AAA)</label>
+				</td>
+			</tr>
+ --> 
+               <tr> 
+                <td colspan="3"> 
+                 <div id="guideline_in_radio"> 
+                  <table width="100%"> 
+                   <tbody>
+                    <tr> 
+                     <td class="one_third_width"> <input type="radio" name="radio_gid[]" id="radio_gid_1" value="1"> <label for="radio_gid_1">BITV 1.0 (Level 2)</label> </td> 
+                     <td class="one_third_width"> <input type="radio" name="radio_gid[]" id="radio_gid_2" value="2"> <label for="radio_gid_2">Section 508</label> </td> 
+                     <td class="one_third_width"> <input type="radio" name="radio_gid[]" id="radio_gid_3" value="3"> <label for="radio_gid_3">Stanca Act</label> </td> 
+                    </tr> 
+                    <tr> 
+                     <td class="one_third_width"> <input type="radio" name="radio_gid[]" id="radio_gid_4" value="4"> <label for="radio_gid_4">WCAG 1.0 (Level A)</label> </td> 
+                     <td class="one_third_width"> <input type="radio" name="radio_gid[]" id="radio_gid_5" value="5"> <label for="radio_gid_5">WCAG 1.0 (Level AA)</label> </td> 
+                     <td class="one_third_width"> <input type="radio" name="radio_gid[]" id="radio_gid_6" value="6"> <label for="radio_gid_6">WCAG 1.0 (Level AAA)</label> </td> 
+                    </tr> 
+                    <tr> 
+                     <td class="one_third_width"> <input type="radio" name="radio_gid[]" id="radio_gid_7" value="7"> <label for="radio_gid_7">WCAG 2.0 (Level A)</label> </td> 
+                     <td class="one_third_width"> <input type="radio" name="radio_gid[]" id="radio_gid_8" value="8"> <label for="radio_gid_8">WCAG 2.0 (Level AA)</label> </td> 
+                     <td class="one_third_width"> <input type="radio" name="radio_gid[]" id="radio_gid_9" value="9" checked> <label for="radio_gid_9">WCAG 2.0 (Level AAA)</label> </td> 
+                    </tr> 
+                   </tbody>
+                  </table> 
+                 </div> 
+                 <div id="guideline_in_checkbox" style="display:none"> 
+                  <table width="100%"> 
+                   <tbody>
+                    <tr> 
+                     <td class="one_third_width"> <input type="checkbox" name="checkbox_gid[]" id="checkbox_gid_1" value="1"> <label for="checkbox_gid_1">BITV 1.0 (Level 2)</label> </td> 
+                     <td class="one_third_width"> <input type="checkbox" name="checkbox_gid[]" id="checkbox_gid_2" value="2"> <label for="checkbox_gid_2">Section 508</label> </td> 
+                     <td class="one_third_width"> <input type="checkbox" name="checkbox_gid[]" id="checkbox_gid_3" value="3"> <label for="checkbox_gid_3">Stanca Act</label> </td> 
+                    </tr> 
+                    <tr> 
+                     <td class="one_third_width"> <input type="checkbox" name="checkbox_gid[]" id="checkbox_gid_4" value="4"> <label for="checkbox_gid_4">WCAG 1.0 (Level A)</label> </td> 
+                     <td class="one_third_width"> <input type="checkbox" name="checkbox_gid[]" id="checkbox_gid_5" value="5"> <label for="checkbox_gid_5">WCAG 1.0 (Level AA)</label> </td> 
+                     <td class="one_third_width"> <input type="checkbox" name="checkbox_gid[]" id="checkbox_gid_6" value="6"> <label for="checkbox_gid_6">WCAG 1.0 (Level AAA)</label> </td> 
+                    </tr> 
+                    <tr> 
+                     <td class="one_third_width"> <input type="checkbox" name="checkbox_gid[]" id="checkbox_gid_7" value="7"> <label for="checkbox_gid_7">WCAG 2.0 (Level A)</label> </td> 
+                     <td class="one_third_width"> <input type="checkbox" name="checkbox_gid[]" id="checkbox_gid_8" value="8" checked> <label for="checkbox_gid_8">WCAG 2.0 (Level AA)</label> </td> 
+                     <td class="one_third_width"> <input type="checkbox" name="checkbox_gid[]" id="checkbox_gid_9" value="9"> <label for="checkbox_gid_9">WCAG 2.0 (Level AAA)</label> </td> 
+                    </tr> 
+                   </tbody>
+                  </table> 
+                 </div> </td> 
+               </tr> 
+               <tr> 
+                <td colspan="3"><h3>Report Format</h3></td> 
+               </tr> 
+               <tr> 
+                <td class="one_third_width"><input type="radio" name="rpt_format" value="1" id="option_rpt_gdl" checked><label for="option_rpt_gdl">View by Guideline</label></td> 
+                <td class="one_third_width"><input type="radio" name="rpt_format" value="2" id="option_rpt_line"><label for="option_rpt_line">View by Line Number</label></td> 
+               </tr> 
+              </tbody>
+             </table> 
+            </div> 
+           </fieldset> 
+          </div> 
+         </form> 
+         <div style="float:right;margin-right:2em;clear:right;width:250px;">
+          <br> 
+          <a href="checker/index.php#skipads"><img src="images/clr.gif" alt="Jump past advertisements" border="0"></a> 
+          <script type="text/javascript">
+	<!--
+	google_ad_client = "pub-8538177464726172";
+	/* 250x250, created 3/13/09 */
+	google_ad_slot = "0783349774";
+	google_ad_width = 250;
+	google_ad_height = 250;
+	//-->
+	</script> 
+          <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+	</script> 
+          <a name="skipads" title="passed ads"></a> 
+         </div> 
+        </div> </td> 
+      </tr> 
+     </tbody>
+    </table> 
+    <div id="AC_seals_div" class="validator-output-form"> 
+    </div> 
+    <div id="output_div"> 
+     <div class="center-input-form"> 
+      <a name="report" title="Start Report"></a> 
+      <fieldset class="group_form">
+       <legend class="group_form">Accessibility Review</legend> 
+       <h3>Accessibility Review (Guidelines: <a title="WCAG 2.0 (Level AAA)(link opens in a new window)" target="_new" href="http://achecker.ca/guideline/view_guideline.php?id=9">WCAG 2.0 (Level AAA)</a>)</h3> 
+       <div class="center"> 
+        <form name="file_form" enctype="multipart/form-data" method="post"> 
+         <fieldset id="report_file">
+          <legend class="report_file">Export Report</legend> 
+          <div style="padding: 0.5em;"> 
+           <label for="file_type">Export Format:</label> 
+           <select name="file_menu" id="fileselect"> <option value="pdf" selected>PDF</option> <option value="earl">EARL</option> <option value="csv">CSV</option> <option value="html">HTML</option> </select>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+           <label for="problem_type">Report to Export:</label> 
+           <select name="problem_menu" id="problemselect"> <option value="all" selected>All</option> <option value="known">Known</option> <option value="likely">Likely</option> <option value="potential">Potential</option> <option value="html">HTML Validation</option> <option value="css">CSS Validation</option> </select>&nbsp;&nbsp;&nbsp;&nbsp; 
+           <iframe id="downloadFrame" src="" style="display:none;"></iframe> 
+           <input class="report_file_button" type="button" name="validate_export" id="validate_file_button" value="Get File" onclick="return AChecker.input.validateFile('spinner_export');"> 
+           <div class="spinner_div"> 
+            <img class="spinner_img" id="spinner_export" style="display:none" src="http://achecker.ca/themes/default/images/spinner.gif" alt="Accessibility Validation in Progress"> &nbsp; 
+           </div> 
+          </div> 
+         </fieldset> 
+        </form> 
+       </div> 
+       <div class="topnavlistcontainer">
+        <br> 
+        <ul class="navigation"> 
+         <li class="navigation"><a href="javascript:void(0);" accesskey="1" title="Known Problems Alt+1" id="AC_menu_errors" onclick="AChecker.output.onClickTab('AC_errors');"><span class="nav">Known Problems(<span id="AC_num_of_errors">0</span>)</span></a></li> 
+         <li class="navigation"><a href="javascript:void(0);" accesskey="2" title="Likely Problems Alt+2" id="AC_menu_likely_problems" onclick="AChecker.output.onClickTab('AC_likely_problems');"><span class="nav">Likely Problems (<span id="AC_num_of_likely">0</span>)</span></a></li> 
+         <li class="navigation"><a href="javascript:void(0);" accesskey="3" title="Potential Problems Alt+3" id="AC_menu_potential_problems" onclick="AChecker.output.onClickTab('AC_potential_problems');"><span class="nav">Potential Problems (<span id="AC_num_of_potential">33</span>)</span></a></li> 
+         <li class="navigation"><a href="javascript:void(0);" accesskey="4" title="HTML Validation Alt+4" id="AC_menu_html_validation_result" onclick="AChecker.output.onClickTab('AC_html_validation_result');"><span class="nav">HTML Validation </span></a></li> 
+         <li class="navigation"><a href="javascript:void(0);" accesskey="5" title="CSS Validation Alt+5" id="AC_menu_css_validation_result" onclick="AChecker.output.onClickTab('AC_css_validation_result');"><span class="nav">CSS Validation </span></a></li> 
+        </ul> 
+       </div> 
+       <div id="AC_errors"> 
+        <br> 
+        <span id="AC_congrats_msg_for_errors" class="congrats_msg"> <img src="http://achecker.ca/images/feedback.gif" alt="Feedback"> Congratulations! No known problems. </span> 
+       </div> 
+       <div id="AC_likely_problems" style="display:none;"> 
+        <br> 
+        <span id="AC_congrats_msg_for_likely" class="congrats_msg"> <img src="http://achecker.ca/images/feedback.gif" alt="Feedback"> Congratulations! No likely problems. </span> 
+       </div> 
+       <div id="AC_potential_problems" style="margin-top:1em; display:none;"> 
+        <br> 
+        <span id="AC_congrats_msg_for_potential"> </span> 
+        <h3>1.3 Adaptable: Create content that can be presented in different ways without losing information or structure.</h3>
+        <br> 
+        <h4>Success Criteria 1.3.1 Info and Relationships (A)</h4>
+        <br> 
+        <div class="gd_one_check"> 
+         <span class="gd_msg">Check 270: <a href="http://achecker.ca/checker/suggestion.php?id=270" onclick="AChecker.popup('http://achecker.ca/checker/suggestion.php?id=270'); return false;" target="_new">Unicode right-to-left marks or left-to-right marks may be required.</a> </span> 
+         <div class="gd_question_section"> 
+         </div> 
+         <table id="tb_problems_288" class="data static"> 
+          <tbody>
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_20_1_270" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 20, Column 1</em>: <pre><code class="input">&lt;body class="cb" data-bind="defineGlobals: ServerData, bodyCssClass"&gt;
+&lt;/body&gt;</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+          </tbody>
+         </table> 
+        </div> 
+        <div class="gd_one_check"> 
+         <span class="gd_msg">Check 271: <a href="http://achecker.ca/checker/suggestion.php?id=271" onclick="AChecker.popup('http://achecker.ca/checker/suggestion.php?id=271'); return false;" target="_new"><code>dir</code> attribute may be required to identify changes in text direction.</a> </span> 
+         <div class="gd_question_section"> 
+         </div> 
+         <table id="tb_problems_288" class="data static"> 
+          <tbody>
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_20_1_271" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 20, Column 1</em>: <pre><code class="input">&lt;body class="cb" data-bind="defineGlobals: ServerData, bodyCssClass"&gt;
+&lt;/body&gt;</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+          </tbody>
+         </table> 
+        </div> 
+        <h3>1.4 Distinguishable: Make it easier for users to see and hear content including separating foreground from background.</h3>
+        <br> 
+        <h4>Success Criteria 1.4.1 Use of Colour (A)</h4>
+        <br> 
+        <div class="gd_one_check"> 
+         <span class="gd_msg">Check 86: <a href="http://achecker.ca/checker/suggestion.php?id=86" onclick="AChecker.popup('http://achecker.ca/checker/suggestion.php?id=86'); return false;" target="_new"><code>script</code> may use color alone.</a> </span> 
+         <div class="gd_question_section"> 
+         </div> 
+         <table id="tb_problems_293" class="data static"> 
+          <tbody>
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_4_203_86" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 4, Column 203</em>: <pre><code class="input">&lt;script type="text/javascript"&gt;var PROOF = {};PROOF.Type = {SQSA: 6, CSS: 5, DeviceId: 4, Email: 1,  ...</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_15_54_86" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 15, Column 54</em>: <pre><code class="input">&lt;script type="text/javascript"&gt;if (top != self){try{top.location.replace(self.location.href);}catch  ...</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_15_174_86" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 15, Column 174</em>: <pre><code class="input">&lt;script type="text/javascript"&gt;var g_iSRSFailed=0,g_sSRSSuccess="";function SRSRetry(a,f,b){var e=1, ...</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_17_1_86" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 17, Column 1</em>: <pre><code class="input">&lt;script type="text/javascript"&gt;var ServerData = {Bi:0,Bk:'PPFT',aB:"&amp;copy;2016 Microsoft",Bo:'https: ...</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_17_55_86" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 17, Column 55</em>: <pre><code class="input">&lt;script type="text/javascript" src="https://auth.gfx.ms/16.000.26706.00/DefaultLoginPaginatedStrings ...</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_18_5_86" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 18, Column 5</em>: <pre><code class="input">&lt;script type="text/javascript" src="https://auth.gfx.ms/16.000.26706.00/DefaultLogin_PCore.js"&gt;&lt;/scr ...</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_19_5_86" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 19, Column 5</em>: <pre><code class="input">&lt;script type="text/javascript"&gt;SRSRetry("__DefaultLoginPaginatedStrings", "https://auth.gfx.ms/16.00 ...</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_19_59_86" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 19, Column 59</em>: <pre><code class="input">&lt;script type="text/javascript"&gt;SRSRetry("__DefaultLoginPaginatedStrings", "https://auth.gfx.ms/16.00 ...</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+          </tbody>
+         </table> 
+        </div> 
+        <h3>2.1 Keyboard Accessible: Make all functionality available from a keyboard.</h3>
+        <br> 
+        <h4>Success Criteria 2.1.1 Keyboard (A)</h4>
+        <br> 
+        <div class="gd_one_check"> 
+         <span class="gd_msg">Check 89: <a href="http://achecker.ca/checker/suggestion.php?id=89" onclick="AChecker.popup('http://achecker.ca/checker/suggestion.php?id=89'); return false;" target="_new"><code>script</code> user interface may not be accessible.</a> </span> 
+         <div class="gd_question_section"> 
+         </div> 
+         <table id="tb_problems_296" class="data static"> 
+          <tbody>
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_4_203_89" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 4, Column 203</em>: <pre><code class="input">&lt;script type="text/javascript"&gt;var PROOF = {};PROOF.Type = {SQSA: 6, CSS: 5, DeviceId: 4, Email: 1,  ...</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_15_54_89" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 15, Column 54</em>: <pre><code class="input">&lt;script type="text/javascript"&gt;if (top != self){try{top.location.replace(self.location.href);}catch  ...</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_15_174_89" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 15, Column 174</em>: <pre><code class="input">&lt;script type="text/javascript"&gt;var g_iSRSFailed=0,g_sSRSSuccess="";function SRSRetry(a,f,b){var e=1, ...</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_17_1_89" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 17, Column 1</em>: <pre><code class="input">&lt;script type="text/javascript"&gt;var ServerData = {Bi:0,Bk:'PPFT',aB:"&amp;copy;2016 Microsoft",Bo:'https: ...</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_17_55_89" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 17, Column 55</em>: <pre><code class="input">&lt;script type="text/javascript" src="https://auth.gfx.ms/16.000.26706.00/DefaultLoginPaginatedStrings ...</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_18_5_89" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 18, Column 5</em>: <pre><code class="input">&lt;script type="text/javascript" src="https://auth.gfx.ms/16.000.26706.00/DefaultLogin_PCore.js"&gt;&lt;/scr ...</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_19_5_89" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 19, Column 5</em>: <pre><code class="input">&lt;script type="text/javascript"&gt;SRSRetry("__DefaultLoginPaginatedStrings", "https://auth.gfx.ms/16.00 ...</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_19_59_89" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 19, Column 59</em>: <pre><code class="input">&lt;script type="text/javascript"&gt;SRSRetry("__DefaultLoginPaginatedStrings", "https://auth.gfx.ms/16.00 ...</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+          </tbody>
+         </table> 
+        </div> 
+        <h3>2.3 Seizures: Do not design content in a way that is known to cause seizures.</h3>
+        <br> 
+        <h4>Success Criteria 2.3.1 Three Flashes or Below Threshold (A)</h4>
+        <br> 
+        <div class="gd_one_check"> 
+         <span class="gd_msg">Check 87: <a href="http://achecker.ca/checker/suggestion.php?id=87" onclick="AChecker.popup('http://achecker.ca/checker/suggestion.php?id=87'); return false;" target="_new"><code>script</code> may cause screen flicker.</a> </span> 
+         <div class="gd_question_section"> 
+         </div> 
+         <table id="tb_problems_302" class="data static"> 
+          <tbody>
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_4_203_87" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 4, Column 203</em>: <pre><code class="input">&lt;script type="text/javascript"&gt;var PROOF = {};PROOF.Type = {SQSA: 6, CSS: 5, DeviceId: 4, Email: 1,  ...</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_15_54_87" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 15, Column 54</em>: <pre><code class="input">&lt;script type="text/javascript"&gt;if (top != self){try{top.location.replace(self.location.href);}catch  ...</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_15_174_87" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 15, Column 174</em>: <pre><code class="input">&lt;script type="text/javascript"&gt;var g_iSRSFailed=0,g_sSRSSuccess="";function SRSRetry(a,f,b){var e=1, ...</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_17_1_87" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 17, Column 1</em>: <pre><code class="input">&lt;script type="text/javascript"&gt;var ServerData = {Bi:0,Bk:'PPFT',aB:"&amp;copy;2016 Microsoft",Bo:'https: ...</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_17_55_87" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 17, Column 55</em>: <pre><code class="input">&lt;script type="text/javascript" src="https://auth.gfx.ms/16.000.26706.00/DefaultLoginPaginatedStrings ...</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_18_5_87" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 18, Column 5</em>: <pre><code class="input">&lt;script type="text/javascript" src="https://auth.gfx.ms/16.000.26706.00/DefaultLogin_PCore.js"&gt;&lt;/scr ...</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_19_5_87" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 19, Column 5</em>: <pre><code class="input">&lt;script type="text/javascript"&gt;SRSRetry("__DefaultLoginPaginatedStrings", "https://auth.gfx.ms/16.00 ...</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_19_59_87" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 19, Column 59</em>: <pre><code class="input">&lt;script type="text/javascript"&gt;SRSRetry("__DefaultLoginPaginatedStrings", "https://auth.gfx.ms/16.00 ...</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+          </tbody>
+         </table> 
+        </div> 
+        <h3>2.4 Navigable: Provide ways to help users navigate, find content, and determine where they are.</h3>
+        <br> 
+        <h4>Success Criteria 2.4.1 Bypass Blocks (A)</h4>
+        <br> 
+        <div class="gd_one_check"> 
+         <span class="gd_msg">Check 28: <a href="http://achecker.ca/checker/suggestion.php?id=28" onclick="AChecker.popup('http://achecker.ca/checker/suggestion.php?id=28'); return false;" target="_new">Document may be missing a "skip to content" link.</a> </span> 
+         <div class="gd_question_section"> 
+         </div> 
+         <table id="tb_problems_305" class="data static"> 
+          <tbody>
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_20_1_28" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 20, Column 1</em>: <pre><code class="input">&lt;body class="cb" data-bind="defineGlobals: ServerData, bodyCssClass"&gt;
+&lt;/body&gt;</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+          </tbody>
+         </table> 
+        </div> 
+        <div class="gd_one_check"> 
+         <span class="gd_msg">Check 262: <a href="http://achecker.ca/checker/suggestion.php?id=262" onclick="AChecker.popup('http://achecker.ca/checker/suggestion.php?id=262'); return false;" target="_new">Groups of links with a related purpose are not marked.</a> </span> 
+         <div class="gd_question_section"> 
+         </div> 
+         <table id="tb_problems_305" class="data static"> 
+          <tbody>
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_20_1_262" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 20, Column 1</em>: <pre><code class="input">&lt;body class="cb" data-bind="defineGlobals: ServerData, bodyCssClass"&gt;
+&lt;/body&gt;</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+          </tbody>
+         </table> 
+        </div> 
+        <h4>Success Criteria 2.4.10 Section Headings (AAA)</h4>
+        <br> 
+        <div class="gd_one_check"> 
+         <span class="gd_msg">Check 261: <a href="http://achecker.ca/checker/suggestion.php?id=261" onclick="AChecker.popup('http://achecker.ca/checker/suggestion.php?id=261'); return false;" target="_new">Sections may not be marked with headers.</a> </span> 
+         <div class="gd_question_section"> 
+         </div> 
+         <table id="tb_problems_342" class="data static"> 
+          <tbody>
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_20_1_261" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 20, Column 1</em>: <pre><code class="input">&lt;body class="cb" data-bind="defineGlobals: ServerData, bodyCssClass"&gt;
+&lt;/body&gt;</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+          </tbody>
+         </table> 
+        </div> 
+        <h4>Success Criteria 2.4.2 Page Titled (A)</h4>
+        <br> 
+        <div class="gd_one_check"> 
+         <span class="gd_msg">Check 54: <a href="http://achecker.ca/checker/suggestion.php?id=54" onclick="AChecker.popup('http://achecker.ca/checker/suggestion.php?id=54'); return false;" target="_new"><code>title</code> might not describe the document.</a> </span> 
+         <div class="gd_question_section"> 
+         </div> 
+         <table id="tb_problems_306" class="data static"> 
+          <tbody>
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_4_628_54" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 4, Column 628</em>: <pre><code class="input">&lt;title&gt;Sign In&lt;/title&gt;</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+          </tbody>
+         </table> 
+        </div> 
+        <h4>Success Criteria 2.4.5 Multiple Ways (AA)</h4>
+        <br> 
+        <div class="gd_one_check"> 
+         <span class="gd_msg">Check 184: <a href="http://achecker.ca/checker/suggestion.php?id=184" onclick="AChecker.popup('http://achecker.ca/checker/suggestion.php?id=184'); return false;" target="_new">Site missing site map.</a> </span> 
+         <div class="gd_question_section"> 
+         </div> 
+         <table id="tb_problems_309" class="data static"> 
+          <tbody>
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_20_1_184" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 20, Column 1</em>: <pre><code class="input">&lt;body class="cb" data-bind="defineGlobals: ServerData, bodyCssClass"&gt;
+&lt;/body&gt;</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+          </tbody>
+         </table> 
+        </div> 
+        <h4>Success Criteria 2.4.8 Location (AAA)</h4>
+        <br> 
+        <div class="gd_one_check"> 
+         <span class="gd_msg">Check 266: <a href="http://achecker.ca/checker/suggestion.php?id=266" onclick="AChecker.popup('http://achecker.ca/checker/suggestion.php?id=266'); return false;" target="_new">Document may require a breadcrumb trail.</a> </span> 
+         <div class="gd_question_section"> 
+         </div> 
+         <table id="tb_problems_312" class="data static"> 
+          <tbody>
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_20_1_266" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 20, Column 1</em>: <pre><code class="input">&lt;body class="cb" data-bind="defineGlobals: ServerData, bodyCssClass"&gt;
+&lt;/body&gt;</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+          </tbody>
+         </table> 
+        </div> 
+        <h3>3.2 Predictable: Make Web pages appear and operate in predictable ways.</h3>
+        <br> 
+        <h4>Success Criteria 3.2.3 Consistent Navigation (AA)</h4>
+        <br> 
+        <div class="gd_one_check"> 
+         <span class="gd_msg">Check 276: <a href="http://achecker.ca/checker/suggestion.php?id=276" onclick="AChecker.popup('http://achecker.ca/checker/suggestion.php?id=276'); return false;" target="_new">Repeated components may not appear in the same relative order each time they appear.</a> </span> 
+         <div class="gd_question_section"> 
+         </div> 
+         <table id="tb_problems_322" class="data static"> 
+          <tbody>
+           <tr> 
+            <td> <span class="err_type"><img id="msg_icon_20_1_276" src="http://achecker.ca/images/info.png" alt="Manual Check Required" title="Manual Check Required" width="15" height="15"></span> <em>Line 20, Column 1</em>: <pre><code class="input">&lt;body class="cb" data-bind="defineGlobals: ServerData, bodyCssClass"&gt;
+&lt;/body&gt;</code></pre> <p class="helpwanted"> </p> </td> 
+           </tr> 
+          </tbody>
+         </table> 
+        </div> 
+       </div> 
+       <div id="AC_html_validation_result" style="margin-top:1em; display:none;"> 
+        <br>
+        <span class="info_msg"><img src="http://achecker.ca/images/info.png" width="15" height="15" alt="Information"> HTML Validator is turned off. Enable it in "Options".</span> 
+       </div> 
+       <div id="AC_css_validation_result" style="margin-top:1em; display:none;"> 
+        <br>
+        <span class="info_msg"><img src="http://achecker.ca/images/info.png" width="15" height="15" alt="Information"> CSS Validator is turned off. Enable it in "Options".</span> 
+       </div> 
+      </fieldset> 
+     </div> 
+    </div>
+    <br> 
+    <div align="center" id="lang" style="clear: both;">
+     <br> 
+     <small><label for="lang">Translate to </label></small>
+     <strong>English</strong> | 
+     <a href="/checker/index.php?lang=deu">German</a> | 
+     <a href="/checker/index.php?lang=ita">Italiano</a> 
+    </div>
+    <br>
+    <br> 
+    <div style="margin-left:auto; margin-right:auto; width:20em;"> 
+     <small>Web site engine's code is copyright © 2011</small>
+     <br> 
+    </div> 
+   </div> 
+   <!--  end center-content div --> 
+   <div class="bottom">
+    <span></span>
+   </div>
+   <!--  bottom for liquid-round theme --> 
+  </div> 
+  <!-- end liquid-round div --> 
+  <div style="margin-left:auto; margin-right:auto; width:56px;"> 
+   <a href="http://inclusivedesign.ca/"><img width="56" src="http://achecker.ca/themes/default/images/IDI.png" height="73" alt="Inclusive Design Institute" title="Inclusive Design Institute" style="border:none;"></a> 
+  </div> 
+  <script language="javascript" type="text/javascript">
+//<!--
+var selected;
+function rowselect(obj) {
+	obj.className = 'selected';
+	if (selected && selected != obj.id)
+		document.getElementById(selected).className = '';
+	selected = obj.id;
+}
+function rowselectbox(obj, checked, handler) {
+	var functionDemo = new Function(handler + ";");
+	functionDemo();
+
+	if (checked)
+		obj.className = 'selected';
+	else
+		obj.className = '';
+}
+//-->
+</script> 
+  <div align="center" style="clear:both;margin-left:auto; width:15em;margin-right:auto;"> 
+   <a href="documentation/web_service_api.php" title="Web Service API" target="_new">Web Service API</a> 
+  </div>   
+ </body>
+</html>
