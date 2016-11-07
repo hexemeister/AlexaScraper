@@ -15,7 +15,7 @@ apply plugin: 'war'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
-mainClassName="main.Principal"
+mainClassName="main.ACheckerScrapper"
 
 // In this section you declare where to find the dependencies of your project
 repositories {
